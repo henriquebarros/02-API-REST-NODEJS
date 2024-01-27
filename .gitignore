@@ -1,4 +1,4 @@
 # Ignorar o diretorio node_modules
 node_modules/
 
-tmp/app.db
+db/app.db
