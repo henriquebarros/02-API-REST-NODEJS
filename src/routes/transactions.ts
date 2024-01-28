@@ -5,6 +5,10 @@ import { knex } from '../database'
 import { checkSessionIdExists } from '../middlewares/check-session-id-exists'
 
 export async function transactionsRoutes(app: FastifyInstance) {
+  // Configurando um hook global; registrar hooks no Fastify e em quais rotas eles vão impactar.
+  app.addHook('preHandler', async (request, reply) => {
+    console.log(`[${request.method}] ${request.url}`)
+  })
   app.get(
     '/',
     { preHandler: [checkSessionIdExists] }, // preHandler lista funções que serão executadas antes do Handler (a função seguinte)
