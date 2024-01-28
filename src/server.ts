@@ -6,6 +6,7 @@ import { transactionsRoutes } from './routes/transactions'
 const app = fastify()
 
 app.register(cookie)
+// método register para registrar um plugin que contém todas as rotas com o mesmo path
 app.register(transactionsRoutes, {
   prefix: 'transactions',
 })

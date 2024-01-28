@@ -76,7 +76,7 @@ export async function transactionsRoutes(app: FastifyInstance) {
         maxAge: 60 * 60 * 24 * 7, // 7 days
       })
     }
-
+    // 3,6,8,10
     await knex('transactions').insert({
       id: randomUUID(),
       title,
