@@ -1,7 +1,8 @@
-import { expect, it, beforeAll, afterAll, describe } from 'vitest'
+import { expect, it, beforeAll, afterAll, describe, beforeEach } from 'vitest'
 import request from 'supertest'
+// execSync método que possibilita executar comandos no terminal no ambiente node
+import { execSync } from 'node:child_process'
 import { app } from '../src/app'
-import exp from 'constants'
 
 describe('Transctions routes', () => {
   beforeAll(async () => {
@@ -10,6 +11,11 @@ describe('Transctions routes', () => {
 
   afterAll(async () => {
     await app.close()
+  })
+
+  beforeEach(() => {
+    execSync('npm run knex migrate:rollback --all')
+    execSync('npm run knex migrate:latest')
   })
 
   // deve ser possível criar uma nova transação
