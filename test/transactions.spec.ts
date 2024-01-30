@@ -5,14 +5,16 @@ import { execSync } from 'node:child_process'
 import { app } from '../src/app'
 
 describe('Transctions routes', () => {
+  // método exedutado uma única vez antes de todos os testes do bloco de teste
   beforeAll(async () => {
     await app.ready()
   })
-
+  // método executado depois de todos os testes no bloco de teste
   afterAll(async () => {
     await app.close()
   })
 
+  // método é executado antes de cada teste no bloco de teste
   beforeEach(() => {
     execSync('npm run knex migrate:rollback --all')
     execSync('npm run knex migrate:latest')
